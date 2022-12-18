@@ -7,10 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class Task3 {
+public class Task4 {
 
 	public static void main(String[] args) {
-WebDriver driver = new EdgeDriver();
+	
+		WebDriver driver = new EdgeDriver();
 		
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		
@@ -18,26 +19,40 @@ WebDriver driver = new EdgeDriver();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
+		String loginPageURL = driver.getCurrentUrl();
+		
 		WebElement userName = driver.findElement(By.name("username"));
 
 		WebElement passWord = driver.findElement(By.name("password"));
 		
 		userName.sendKeys("admin");
 		
-		passWord.sendKeys("Mukesh");
+		passWord.sendKeys("admin123");
 		
 		WebElement LoginButton = driver.findElement(By.xpath("//button[contains(@class,'login-button')]"));
 		
 		LoginButton.click();
 		
-		WebElement invalidCredentianls = driver.findElement(By.xpath("//p[contains(@class,'content-text')]"));
+		String dashBoardPageURL = driver.getCurrentUrl();
 		
-		boolean contains = invalidCredentianls.getText().contains("Invalid credentials");
-		System.out.println("Error Message contains :"+ " "+ invalidCredentianls.getText() + " : " + contains);
+		boolean containsDB = dashBoardPageURL.contains("dashboard");
 		
-		driver.quit();  
+		System.out.println(containsDB);
+		
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+		driver.findElement(By.cssSelector(".oxd-userdropdown-tab")).click();
+		
+		driver.findElement(By.xpath("//a[text()='Logout']")).click();
+		
+		boolean loginPageURLVerfication = driver.getCurrentUrl().equalsIgnoreCase(loginPageURL);
+		
+		System.out.println(loginPageURLVerfication);
 		
 
+		driver.quit();
+		
 	}
 
 }

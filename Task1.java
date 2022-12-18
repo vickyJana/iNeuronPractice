@@ -1,71 +1,61 @@
-package aasignment6;
+package assignment7;
+
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class Task1 {
 
 	public static void main(String[] args) {
 		
-		
 		WebDriver driver = new EdgeDriver();
+		
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		
-//		Try to use contains , xpath axes, text functions
-//
-//		Write a minimum 3 XPath and 3 CSS Selector for the username 
+		driver.manage().window().maximize();
 		
-		driver.findElement(By.xpath("//input[@name='username']")).sendKeys("Admin");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		
-		driver.findElement(By.xpath("//input[@placeholder='Username']"));
+		driver.findElement(By.xpath("//button[contains(@class,'login-button')]")).click();
 		
-		//input[contains(@name,'username')]
+		WebElement userNameRequiredEle = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[1]"));
 		
-		//input[contains(@placeholder,'Username')]
+		WebElement passwordRequiredEle = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[2]"));
 		
-	//	CSS Selector
-//		
-//		input[name='username']
-//				
-//		
-//		input[placeholder='Username']
-//				
-//				.oxd-input.oxd-input--active
+		String userNameRequired = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[1]")).getText();
+		
+		String passwordRequired = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[2]")).getText();
 		
 		
-		
-		//Password :
-			
-		//input[contains(@placeholder,'Password')]
-		
-		//input[contains(@name,'password')]
-		
-		//input[contains(@type,'password')]
-		
-		//CSS Selector
-		//    input[type='password']
-		
-		//    input[name='password']
-		
-		//Login button
+		boolean contentEquals = userNameRequired.contentEquals(passwordRequired);
+		System.out.println(contentEquals);
 		
 		
-		//button[contains(@class,'login')]
-		
-		//button[contains(@type,'submit')]
-		
-		//button[@type='submit']
-		
-		
-		//CSS Selector 
-		
-	//	button[type='submit']
-		
-		
-		
-		
+		WebElement userName = driver.findElement(By.name("username"));
 
+		WebElement passWord = driver.findElement(By.name("password"));
+		
+		String cssValueUserName = userName.getCssValue("border");
+		String cssValuePassWord = passWord.getCssValue("border");
+//		
+//		String borderWidthUserName = userNameRequiredEle.getAttribute("border");
+//		
+//		String borderWidthPassword = passwordRequiredEle.getAttribute("border");
+		
+		System.out.println(cssValueUserName);
+		
+		System.out.println(cssValuePassWord);
+		
+		boolean userNameContains = cssValueUserName.contains("1px");
+		boolean passWordcontains = cssValuePassWord.contains("1px");
+		
+		System.out.println(userNameContains);
+		System.out.println(passWordcontains);
+		
+		driver.quit();
 	}
 
 }
