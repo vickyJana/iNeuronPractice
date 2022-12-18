@@ -1,34 +1,70 @@
-package assignment5;
+package aasignment6;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class Task1 {
 
 	public static void main(String[] args) {
+		
+		
 		WebDriver driver = new EdgeDriver();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		
-		driver.manage().window().maximize();
+//		Try to use contains , xpath axes, text functions
+//
+//		Write a minimum 3 XPath and 3 CSS Selector for the username 
 		
-		String currentUrl = driver.getCurrentUrl();
-		boolean endsWithLogin = currentUrl.endsWith("login");
+		driver.findElement(By.xpath("//input[@name='username']")).sendKeys("Admin");
 		
-		System.out.println(currentUrl);
+		driver.findElement(By.xpath("//input[@placeholder='Username']"));
 		
-		System.out.println("Is Current URL ends with login :" +" "+ endsWithLogin);
+		//input[contains(@name,'username')]
 		
-		boolean containsDemo = currentUrl.contains("demo");
+		//input[contains(@placeholder,'Username')]
 		
-		System.out.println("Is Current URL contains demo :" + " "+ containsDemo );
+	//	CSS Selector
+//		
+//		input[name='username']
+//				
+//		
+//		input[placeholder='Username']
+//				
+//				.oxd-input.oxd-input--active
 		
-		String title = driver.getTitle();
 		
-		System.out.println(title);
 		
-		System.out.println("Is Title contains HRM :"+" "+title.contains("HRM"));
+		//Password :
+			
+		//input[contains(@placeholder,'Password')]
 		
-		driver.quit();
+		//input[contains(@name,'password')]
+		
+		//input[contains(@type,'password')]
+		
+		//CSS Selector
+		//    input[type='password']
+		
+		//    input[name='password']
+		
+		//Login button
+		
+		
+		//button[contains(@class,'login')]
+		
+		//button[contains(@type,'submit')]
+		
+		//button[@type='submit']
+		
+		
+		//CSS Selector 
+		
+	//	button[type='submit']
+		
+		
+		
+		
 
 	}
 

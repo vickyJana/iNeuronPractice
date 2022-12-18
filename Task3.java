@@ -1,12 +1,6 @@
-package assignment5;
+package aasignment6;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,70 +11,89 @@ import org.openqa.selenium.edge.EdgeDriver;
 public class Task3 {
 
 	public static void main(String[] args) {
-		WebDriver driver = new EdgeDriver();
+//		Write a script that should be able to add user > search user > delete the user.
+//
+//		Flow- Login > Admin> Add User> Search User > Delete User > Logout
+//
+//		Add an assertion after each section
+//
+//		https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+//		Admin/admin123
 
+		WebDriver driver = new EdgeDriver();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
 		driver.manage().window().maximize();
-		String[] socialMediaIcons = { "linkedin", "facebook", "twitter", "youtube" };
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-		WebElement copyRight = driver.findElement(By.cssSelector(".orangehrm-copyright-wrapper"));
+		driver.findElement(By.name("username")).sendKeys("Admin");
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView(true);", copyRight);
+		driver.findElement(By.name("password")).sendKeys("admin123");
 
-		List<WebElement> findElements = driver.findElements(By.tagName("a"));
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-		int size = findElements.size();
-		System.out.println(findElements.size());
+		// Admin link
+		driver.findElement(By.xpath("//a[contains(@href,'admin')]")).click();
 
-		for (int i = 0; i < size; i++) {
+		// Add Button
 
-			System.out.println(findElements.get(i).getAttribute("href"));
+		driver.findElement(By.xpath("//button[contains(@class,'secondary') and @type='button']")).click();
 
-		}
-//		for(int j=0;j<size;j++) {
-//			LinkedList<String> attributevalue =new LinkedList<String>();
-//			attributevalue.add(j, findElements.get(j).getAttribute("href"));
-//			System.out.println(attributevalue);
-//		}
-		ArrayList<String> attributevalue1 = new ArrayList<String>();
+		// User Role Field
+
+		// driver.findElement(By.xpath("//div[@class='oxd-select-text
+		// oxd-select-text--active']//div[text()='Admin']")).click();
+
+		driver.findElement(By.xpath("//div[@class='oxd-select-text oxd-select-text--active']")).click();
+		// driver.findElement(By.cssSelector("body > div:nth-child(3) > div:nth-child(1)
+		// > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) >
+		// form:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) >
+		// div:nth-child(1) > div:nth-child(1)")).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//div[@role='listbox']//div[2]")).click();
+
+		driver.findElement(By.cssSelector("input[placeholder*='Type']")).sendKeys("Jan");
+
+		driver.findElement(By.xpath("//span[text()='Linda Jane Anderson']")).click();
+		
+		driver.findElement(By.cssSelector("body > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > form:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")).click();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+		driver.findElement(By.xpath("//div[@role='option']//span[text()='Enabled']")).click();
+		
+		// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// driver.findElement(By.xpath("//div[@status='listbox']//div[2]"));
+		
+		driver.findElement(By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]")).sendKeys("Rajaa11233");
+		
+		driver.findElement(By.xpath("(//input[@type='password'])[1]")).sendKeys("Arjun@1234");
+		
+		driver.findElement(By.xpath("(//input[@type='password'])[2]")).sendKeys("Arjun@1234");
 		
 		
-
-		attributevalue1.add(0, findElements.get(0).getAttribute("href"));
-		attributevalue1.add(1, findElements.get(1).getAttribute("href"));
-		attributevalue1.add(2, findElements.get(2).getAttribute("href"));
-		attributevalue1.add(3, findElements.get(3).getAttribute("href"));
-		attributevalue1.add(4, findElements.get(4).getAttribute("href"));
-		System.out.println(attributevalue1);
+		
+		 //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		
+		WebElement saveButton = driver.findElement(By.xpath("//button[contains(@class,'space')]"));
+		boolean enabled = saveButton.isEnabled();
+		System.out.println(enabled);
+		String OkBtn = saveButton.getText();
+		System.out.println(OkBtn);
+		//saveButton.getAttribute(OkBtn)
+		
+		
+		
+		JavascriptExecutor js =(JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);",saveButton);
+		saveButton.click();
+		
 //		
-
-//		for(WebElement links:findElements) {
-//			
-//			String socialMediaURl = links.getAttribute("href");
-//			
-//			System.out.println(socialMediaURl);
-//			
-//			if(socialMediaURl.contains("youtube")) {
-//				
-//				System.out.println(socialMediaURl);
-//				break;
-//			}
-
-		HashMap<String[], ArrayList<String>> map = new HashMap<String[], ArrayList<String>>();
-		ArrayList<String> merge = map.getOrDefault(socialMediaIcons, attributevalue1);
-		//ArrayList<String> put = map.put(socialMediaIcons, attributevalue1);
-		System.out.println(merge);
+//		
+//		JavascriptExecutor js1 =(JavascriptExecutor) driver;
+//		js1.executeScript("arguments[0].click",saveButton);
 		
-		
-		
-		
-		
-		
-		driver.quit();
 
 	}
 
