@@ -1,0 +1,24 @@
+[RemoteTestNG] detected TestNG version 7.6.1
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Thread id 16
+Thread id 17
+Thread id 15
+Feb 02, 2023 10:00:37 AM org.openqa.selenium.manager.SeleniumManager runCommand
+WARNING: IOException running command [C:\Users\Dell\AppData\Local\Temp\selenium-manager66372669354750015130588476934895497\selenium-manager.exe, --driver, geckodriver]: Cannot run program "C:\Users\Dell\AppData\Local\Temp\selenium-manager66372669354750015130588476934895497\selenium-manager.exe": CreateProcess error=32, The process cannot access the file because it is being used by another process
+Feb 02, 2023 10:00:38 AM org.openqa.selenium.remote.service.DriverService findExecutable
+WARNING: Unable to obtain driver using Selenium Manager: The driver executable must exist: C:\Users\Dell\Desktop\Mukesh_Framework\SeleniumWebDriver_28_jan
+ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
+Starting ChromeDriver 109.0.5414.74 (e7c5703604daa9cc128ccf5a5d3e993513758913-refs/branch-heads/5414@{#1172}) on port 37550
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Feb 02, 2023 10:00:44 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 109, so returning the closest version found: 108
+Google
+
+===============================================
+Suite
+Total tests run: 3, Passes: 1, Failures: 2, Skips: 0
+===============================================

@@ -1,4 +1,4 @@
-package assignment7;
+package assignment12;
 
 import java.time.Duration;
 
@@ -6,56 +6,67 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import helper.Utility;
 
 public class Task1 {
-
-	public static void main(String[] args) {
-		
-		WebDriver driver = new EdgeDriver();
-		
-		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		
-		driver.manage().window().maximize();
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		
-		driver.findElement(By.xpath("//button[contains(@class,'login-button')]")).click();
-		
-		WebElement userNameRequiredEle = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[1]"));
-		
-		WebElement passwordRequiredEle = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[2]"));
-		
-		String userNameRequired = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[1]")).getText();
-		
-		String passwordRequired = driver.findElement(By.xpath("(//span[contains(@class,'error-message')])[2]")).getText();
-		
-		
-		boolean contentEquals = userNameRequired.contentEquals(passwordRequired);
-		System.out.println(contentEquals);
-		
-		
-		WebElement userName = driver.findElement(By.name("username"));
-
-		WebElement passWord = driver.findElement(By.name("password"));
-		
-		String cssValueUserName = userName.getCssValue("border");
-		String cssValuePassWord = passWord.getCssValue("border");
+	
+	
+//	@Parameters("Browser")
+//	@BeforeTest
+//	public void setup() {
 //		
-//		String borderWidthUserName = userNameRequiredEle.getAttribute("border");
-//		
-//		String borderWidthPassword = passwordRequiredEle.getAttribute("border");
+//		Utility.startBrowser("Browser", "https://ineuron-courses.vercel.app/login");
+////		driver = new EdgeDriver();
+////
+////		driver.get("https://ineuron-courses.vercel.app/login");
+////
+////		driver.manage().window().maximize();
+//	}
+	@Parameters("Browser")
+	@Test
+	public void login(String Browser) {
+		WebDriver driver = Utility.startBrowser("Browser", "https://ineuron-courses.vercel.app/login");
+		driver.findElement(By.id("email1")).sendKeys("Jana1234@gmail.com");
+
+		driver.findElement(By.id("password1")).sendKeys("Jana123456!");
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		WebElement signIn = driver.findElement(By.xpath("//button[text()='Sign in']"));signIn.click();
 		
-		System.out.println(cssValueUserName);
-		
-		System.out.println(cssValuePassWord);
-		
-		boolean userNameContains = cssValueUserName.contains("1px");
-		boolean passWordcontains = cssValuePassWord.contains("1px");
-		
-		System.out.println(userNameContains);
-		System.out.println(passWordcontains);
-		
-		driver.quit();
 	}
+//	@AfterTest
+//	public void closeSession() {
+//	
+//		driver.quit();
+//	}
+////		
+//	
+//	
+//	@Test
+//	public void TaskTest() {
+//		//Utility.startBrowser("Browser", "https://ineuron-courses.vercel.app/login");
+//		
+//		driver.findElement(By.id("email1")).sendKeys("Jana1234@gmail.com");
+//
+//		driver.findElement(By.id("password1")).sendKeys("Jana123456!");
+//
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//		WebElement signIn = driver.findElement(By.xpath("//button[text()='Sign in']"));signIn.click();
+//		
+//		driver.quit();
+//	}
+		
+	
+	// while click practice button , iframe are open , Manage course options are not
+	// coming for further automation scripts
 
+	// driver.quit();
 }
+
+
